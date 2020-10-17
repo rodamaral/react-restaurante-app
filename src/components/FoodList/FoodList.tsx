@@ -1,8 +1,9 @@
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import React from 'react';
+import IFood from '../../types/IFood';
+import FoodCard from '../FoodCard';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -21,7 +22,11 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export default function FoodList() {
+interface IFoodList {
+    foodList: IFood[];
+}
+
+export default function FoodList({ foodList }: IFoodList) {
     const classes = useStyles();
 
     return (
@@ -29,13 +34,11 @@ export default function FoodList() {
             <CssBaseline />
 
             <Container maxWidth="lg" className={classes.root}>
-                <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '40vh' }} />
+                {/* <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '40vh' }} />
                 <Typography component="div" style={{ backgroundColor: '#cff8dc', height: '40vh' }} />
-                <Typography component="div" style={{ backgroundColor: '#cfe83c', height: '40vh' }} />
+                <Typography component="div" style={{ backgroundColor: '#cfe83c', height: '40vh' }} /> */}
 
-                <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '40vh' }} />
-                <Typography component="div" style={{ backgroundColor: '#cff8dc', height: '40vh' }} />
-                <Typography component="div" style={{ backgroundColor: '#cfe83c', height: '40vh' }} />
+                {foodList.map(food => <FoodCard key={food.id} food={food} />)}
             </Container>
         </>
     );
