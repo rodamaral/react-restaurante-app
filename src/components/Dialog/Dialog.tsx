@@ -10,7 +10,7 @@ interface IDialogProps {
 export default function RENAME({ children, open, onClose }: IDialogProps) {
 
     return (
-        <MuiDialog open={open} onClose={onClose}>
+        <MuiDialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
             {children}
         </MuiDialog>
     )

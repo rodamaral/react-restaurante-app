@@ -24,15 +24,18 @@ const Container = styled.button`
     }
 `;
 
+type ButtonTypes = "button" | "submit" | "reset" | undefined
+
 interface IButtonProps {
     label: string,
+    type?: ButtonTypes,
     icon?: React.ReactNode,
-    onClick: () => void;
+    onClick?: () => void;
 }
 
-const Button: React.FC<IButtonProps> = ({ label, icon, onClick }) => (
+const Button: React.FC<IButtonProps> = ({ label, icon, type = "button", onClick }) => (
     <Container
-        type="button"
+        type={type}
         onClick={onClick}
     >
         <div className="text">{label}</div>

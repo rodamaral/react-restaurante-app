@@ -7,7 +7,7 @@ import Header from './components/Header'
 import { useFavicon, useTitle } from './hooks'
 import IFood from './types/IFood'
 
-const fakeData = [
+const fakeData: IFood[] = [
     {
         id: 1,
         name: 'Macarronada',
