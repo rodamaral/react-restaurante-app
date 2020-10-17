@@ -4,34 +4,30 @@ import favicon from './assets/icons/favicon.svg'
 import DialogAddFood from './components/DialogAddFood'
 import FoodList from './components/FoodList'
 import Header from './components/Header'
-import { useFavicon, useTitle } from './hooks'
+import LoadingBackdrop from './components/LoadingBackdrop'
+import { useFavicon, useMount, useTitle } from './hooks'
+import api from './services/api'
 import IFood from './types/IFood'
-
-const fakeData: IFood[] = [
-    {
-        id: 1,
-        name: 'Macarronada',
-        image: 'https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food1.png',
-        price: 'R$ 24.23',
-        description: 'Descrição do produto',
-        available: true,
-    },
-    {
-        id: 2,
-        name: 'Arroz e feijão',
-        image: 'https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food1.png',
-        price: 'R$ 13.21',
-        description: 'Descrição do arroz e feijão',
-        available: false,
-    },
-]
 
 export default function App() {
     useTitle('GoRestaurant')
     useFavicon(favicon)
 
     const [pratoModal, setPratoModal] = useState(false)
-    const [foodList, setFoodList] = useState<IFood[]>(fakeData) // FIXME
+    const [loading, setLoading] = useState(false)
+    const [foodList, setFoodList] = useState<IFood[]>([])
+
+    useMount(async () => {
+        try {
+            setLoading(true)
+            const foods = await api.get('foods')
+            setFoodList(foods.data)
+        } catch (error) {
+            console.error(error) // FIXME
+        } finally {
+            setLoading(false)
+        }
+    })
 
     const onOpenModal = useCallback(
         () => {
@@ -52,6 +48,8 @@ export default function App() {
             <Header openModal={onOpenModal} />
 
             <FoodList foodList={foodList} />
+
+            <LoadingBackdrop open={loading} />
 
             <DialogAddFood open={pratoModal} onClose={onCloseModal} />
         </div>
