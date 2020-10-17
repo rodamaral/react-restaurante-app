@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react'
 import './App.css'
 import favicon from './assets/icons/favicon.svg'
 import DialogAddFood from './components/DialogAddFood'
+import FoodList from './components/FoodList'
 import Header from './components/Header'
 import { useFavicon, useTitle } from './hooks'
 
@@ -29,9 +30,7 @@ export default function App() {
         <div>
             <Header openModal={onOpenModal} />
 
-            <main>
-                Main
-            </main>
+            <FoodList />
 
             <DialogAddFood open={pratoModal} onClose={onCloseModal} />
         </div>
