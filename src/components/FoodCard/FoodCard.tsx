@@ -29,10 +29,8 @@ export default function FoodCard({ food }: IFoodCardProps) {
     }
 
     const onEditFood = useCallback((): void => {
-        // onSelectFood(id)
         onSelectFood(food)
     },
-        // [id, onSelectFood],
         [food, onSelectFood],
     )
 

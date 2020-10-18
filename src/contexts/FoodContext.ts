@@ -6,9 +6,7 @@ interface IContext {
     setFoodList: React.Dispatch<React.SetStateAction<IFood[]>>;
     deleteFood: any; // FIXME
     editFood: any; // FIXME
-    id: number | undefined;
-    // setId: React.Dispatch<React.SetStateAction<number | undefined>>;
-    onSelectFood: any;
+    onSelectFood: React.Dispatch<React.SetStateAction<any>>; // FIXME
 }
 
 export const FoodContext = createContext({} as IContext);

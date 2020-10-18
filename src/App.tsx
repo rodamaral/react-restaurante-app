@@ -16,7 +16,6 @@ export default function App() {
     useFavicon(favicon)
     const { enqueueSnackbar } = useSnackbar()
 
-    const [id, setId] = useState<number | undefined>()
     const [food, setFood] = useState<IFood | undefined>()
     const [pratoModal, setPratoModal] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -45,8 +44,6 @@ export default function App() {
     const onSelectFood = useCallback(
         (food: IFood) => {
             setPratoModal(true)
-            // setId(food.id)
-            console.log('selected food', food)
             setFood(food)
         },
         [],
@@ -95,14 +92,14 @@ export default function App() {
     }
 
     return (
-        <FoodContext.Provider value={{ foodList, setFoodList, deleteFood, editFood, id, onSelectFood }}>
+        <FoodContext.Provider value={{ foodList, setFoodList, deleteFood, editFood, onSelectFood }}>
             <Header openModal={onOpenModal} />
 
             <FoodList foodList={foodList} />
 
             <LoadingBackdrop open={loading} />
 
-            <DialogAddFood id={id} selectedFood={food} open={pratoModal} onClose={onCloseModal} />
+            <DialogAddFood selectedFood={food} open={pratoModal} onClose={onCloseModal} />
         </FoodContext.Provider>
     )
 }

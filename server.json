@@ -18,25 +18,9 @@
     {
       "name": "Lá camaron",
       "description": "Muito bom",
-      "image": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food3.png",
       "price": "25.90",
-      "available": true,
+      "image": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food3.png",
       "id": 3
-    },
-    {
-      "name": "TESTE",
-      "description": "TESE",
-      "image": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food1.png",
-      "price": "12.21",
-      "available": true,
-      "id": 9
-    },
-    {
-      "name": "sd",
-      "description": "43 sdf sdf editado",
-      "price": "666",
-      "image": "https://react-hook-form.com/api#register",
-      "id": 10
     }
   ]
 }
