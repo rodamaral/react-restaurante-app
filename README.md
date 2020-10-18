@@ -19,8 +19,8 @@
 ### Bônus:
 
 -   [x] Utilizar alguma solução CSS moderna, como Styled-components
--   [~] Incluir a versão mobile do layout proposto
--   [~] Cuidados com acessibilidade
+-   [ ] Incluir a versão mobile do layout proposto
+-   [ ] Cuidados com acessibilidade
 
 ## Pré-requisitos
 
