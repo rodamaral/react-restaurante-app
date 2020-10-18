@@ -10,6 +10,7 @@ interface IProps {
 }
 
 const StyledInputWrapper = styled.div`
+    display: flex;
     background: #fff;
     border-radius: 8px;
     padding: 18px 24px;
@@ -20,10 +21,10 @@ const StyledInputWrapper = styled.div`
         flex: 1;
         background: transparent;
         border: 0;
-        color: #b7b7cc;
+        color: #87879c;
 
         &::placeholder {
-            color: #b7b7cc;
+            color: #b7a7bc;
         }
     }
 `

@@ -1,25 +1,44 @@
 ## Funcionalidades:
 
 -   [x] **1. Adicionar novos pratos de comida:** ​Em sua página Dashboard você deve abrir um modal ao clicar no botão Novo Prato no Header. Esse modal deve ser responsável por cadastrar uma nova food passando os campos image, name, description, value.
--   [ ] **2. Remover pratos de comida:** Em sua página Dashboard você deve remover um prato de comida ao clicar no botão com ícone de lixeira no componente Food.
--   [ ] **3. Alterar disponibilidade dos pratos de comida:** ​Em sua página Dashboard você deve alterar a disponibilidade de um prato de comida ao clicar no switch que é controlado pelo valor de available.
+-   [x] **2. Remover pratos de comida:** Em sua página Dashboard você deve remover um prato de comida ao clicar no botão com ícone de lixeira no componente Food.
+-   [x] **3. Alterar disponibilidade dos pratos de comida:** ​Em sua página Dashboard você deve alterar a disponibilidade de um prato de comida ao clicar no switch que é controlado pelo valor de available.
 -   [x] **4. Listar os pratos de comida:** Sua página Dashboard deve ser capaz de exibir uma listagem, com o campo title, value, e description e available de todos os pratos de comida que estão cadastrados.
--   [ ] **5. Editar pratos de comida:** ​Em sua página Dashboard você deve abrir um modal ao clicar no botão Editar Prato. Esse modal deve ser responsável por editar uma food passando os campos image, name, description, value.
+-   [x] **5. Editar pratos de comida:** ​Em sua página Dashboard você deve abrir um modal ao clicar no botão Editar Prato. Esse modal deve ser responsável por editar uma food passando os campos image, name, description, value.
 
 ## Solução:
 
 -   [x] Utilizar React, você pode iniciar utilizando Creat React App
--   [ ] Utilizar um gerenciador de estado como o Context API
+-   [x] Utilizar um gerenciador de estado como o Context API
 -   [ ] Escrever testes de unidade e qualquer outro teste que você considere importante
 -   [x] Usar features ES6+
--   [ ] Utilizar HTML com boa semântica
+-   [x] Utilizar HTML com boa semântica
 -   [x] Fazer uso de hooks
 -   [x] Utilizar Material-ui na construção do layout
 
 ### Bônus:
 
--   [ ] Utilizar alguma solução CSS moderna, como Styled-components
--   [ ] Incluir a versão mobile do layout proposto
+-   [x] Utilizar alguma solução CSS moderna, como Styled-components
+-   [~] Incluir a versão mobile do layout proposto
+-   [~] Cuidados com acessibilidade
+
+## Pré-requisitos
+
+-   Git
+-   Node.js
+-   Yarn
+
+### Como executar
+
+-   Clone o repositório `git clone git@github.com:rodamaral/react-restaurante-app.git`
+-   Entre no diretório `cd react-restaurante-app`
+-   Execute `yarn` para instalar as dependências
+-   Execute `yarn global add json-server` para instalar o json-server globalmente em sua máquina, caso já não esteja
+-   Execute `yarn start` para rodar a aplicação
+-   Em outro shell e no mesmo diretório, execute `json-server server.json -p 3334 --delay 150` para iniciar o servidor pras APIs.
+    OBS: Use a mesma **porta** que está registrada no arquivo `.env`
+
+O website deverá ser executado automaticamente em `http://localhost:3000`
 
 ## Available Scripts
 

@@ -68,7 +68,7 @@ const UpsertFoodForm: React.FC<IProps> = ({
 
     return (
         <Form onSubmit={handleSubmit(onSubmit)}>
-            <h1>{isEdit ? 'Editar' : 'Novo'} Prato {selectedFood?.id}</h1>
+            <h1>{isEdit ? 'Editar' : 'Novo'} Prato</h1>
 
             <FormInput name="image"
                 placeholder="Cole o link aqui"

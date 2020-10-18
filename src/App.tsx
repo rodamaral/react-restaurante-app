@@ -37,6 +37,7 @@ export default function App() {
     const onOpenModal = useCallback(
         () => {
             setPratoModal(true)
+            setFood(undefined)
         },
         [],
     )

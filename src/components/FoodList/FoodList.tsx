@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
             padding: '40px 0',
             marginTop: -140,
             display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
+            gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
             gridGap: 32,
         },
         control: {
