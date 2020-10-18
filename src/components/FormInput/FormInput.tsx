@@ -5,7 +5,6 @@ import styled from 'styled-components';
 interface IProps {
     name: string;
     placeholder?: string;
-    // errors?: FieldErrors<TFieldValues>;
     errors: UseFormMethods['errors'];
     innnerRef: any; // FIXME
 }

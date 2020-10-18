@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import logo from '../../assets/icons/logo.svg';
 import Button from '../Button';
 
 const Container = styled.div`
@@ -23,15 +24,13 @@ interface IHeaderProps {
 const Header: React.FC<IHeaderProps> = ({ openModal }) => (
     <Container>
         <header>
-            <nav>
-                <div>
-                    <Button
-                        label="Novo Prato"
-                        onClick={openModal}
-                        icon="+"
-                    />
-                </div>
-            </nav>
+            <img src={logo} alt="Logo" />
+
+            <Button
+                label="Novo Prato"
+                onClick={openModal}
+                icon="+"
+            />
         </header>
     </Container>
 );

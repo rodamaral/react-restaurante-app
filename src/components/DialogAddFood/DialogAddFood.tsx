@@ -55,6 +55,7 @@ const ModalAddFood: React.FC<IModalProps> = ({
             });
 
             setFoodList((old: IFood[]) => [...old, response.data as IFood])
+            onClose()
         } catch (error) {
             console.error(error)
             enqueueSnackbar('Desculpe... Houve um erro de conexão', { variant: 'error' })
