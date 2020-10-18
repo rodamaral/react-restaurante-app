@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 import styled from 'styled-components';
+import { FoodContext } from '../../contexts/FoodContext';
+import api from '../../services/api';
+import IFood from '../../types/IFood';
 import Button from '../Button';
 import Dialog from '../Dialog';
 import FormInput from '../FormInput';
@@ -33,8 +36,26 @@ const ModalAddFood: React.FC<IModalProps> = ({
     open,
     onClose,
 }) => {
-    const { register, handleSubmit, watch, errors } = useForm();
-    const onSubmit = (data: any) => console.log(data);
+    const { register, handleSubmit, errors } = useForm();
+    const { setFoodList } = useContext(FoodContext)
+
+    const onSubmit = async (data: any) => {
+        try {
+            const { name, description, image, price } = data;
+
+            const response = await api.post('foods', {
+                name,
+                description,
+                image,
+                price,
+                available: true,
+            });
+
+            setFoodList((old: IFood[]) => [...old, response.data as IFood])
+        } catch (error) {
+            alert(error)
+        }
+    }
 
     return (
         <Dialog open={open} onClose={onClose}>

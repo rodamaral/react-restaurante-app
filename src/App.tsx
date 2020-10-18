@@ -5,6 +5,7 @@ import DialogAddFood from './components/DialogAddFood'
 import FoodList from './components/FoodList'
 import Header from './components/Header'
 import LoadingBackdrop from './components/LoadingBackdrop'
+import { FoodContext } from './contexts/FoodContext'
 import { useFavicon, useMount, useTitle } from './hooks'
 import api from './services/api'
 import IFood from './types/IFood'
@@ -44,7 +45,7 @@ export default function App() {
     )
 
     return (
-        <div>
+        <FoodContext.Provider value={{ foodList, setFoodList }}>
             <Header openModal={onOpenModal} />
 
             <FoodList foodList={foodList} />
@@ -52,6 +53,6 @@ export default function App() {
             <LoadingBackdrop open={loading} />
 
             <DialogAddFood open={pratoModal} onClose={onCloseModal} />
-        </div>
+        </FoodContext.Provider>
     )
 }
