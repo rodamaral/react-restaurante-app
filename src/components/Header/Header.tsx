@@ -1,4 +1,5 @@
 import React from 'react';
+import { FiPlusSquare } from 'react-icons/fi';
 import styled from 'styled-components';
 import logo from '../../assets/icons/logo.svg';
 import Button from '../Button';
@@ -29,7 +30,7 @@ const Header: React.FC<IHeaderProps> = ({ openModal }) => (
             <Button
                 label="Novo Prato"
                 onClick={openModal}
-                icon="+"
+                icon={<FiPlusSquare size={24} />}
             />
         </header>
     </Container>

@@ -51,7 +51,7 @@ export default function DeleteFood({ onDelete }: any) {
                 <DialogActions>
                     <Button label="Cancelar" onClick={handleClose} variant="cancel" />
 
-                    <Button label="Deletar" onClick={handleDelete} icon="-" variant="warning" />
+                    <Button label="Deletar" onClick={handleDelete} icon={<FiTrash size={24} />} variant="warning" />
                 </DialogActions>
             </Dialog>
         </>

@@ -1,6 +1,7 @@
 import { useSnackbar } from 'notistack';
 import React, { useContext, useMemo } from 'react';
 import { useForm } from "react-hook-form";
+import { FiCheckSquare, FiEdit3 } from 'react-icons/fi';
 import styled from 'styled-components';
 import { FoodContext } from '../../contexts/FoodContext';
 import api from '../../services/api';
@@ -96,7 +97,7 @@ const UpsertFoodForm: React.FC<IProps> = ({
             <Button
                 label={isEdit ? 'Editar Prato' : 'Adicionar Prato'}
                 type="submit"
-                icon="+"
+                icon={isEdit ? <FiEdit3 size={24} /> : <FiCheckSquare size={24} />}
             />
         </Form>
     );
