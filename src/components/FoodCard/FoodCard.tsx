@@ -1,7 +1,8 @@
 import React, { useCallback, useContext } from 'react';
-import { FiEdit3, FiTrash } from 'react-icons/fi';
+import { FiEdit3 } from 'react-icons/fi';
 import { FoodContext } from '../../contexts/FoodContext';
 import IFood from '../../types/IFood';
+import DeleteFood from '../DeleteFood';
 import Container from './styles';
 
 interface IFoodCardProps {
@@ -59,14 +60,7 @@ export default function FoodCard({ food }: IFoodCardProps) {
                         <FiEdit3 size={20} />
                     </button>
 
-                    <button
-                        type="button"
-                        className="icon"
-                        aria-label="delete"
-                        onClick={onDelete}
-                    >
-                        <FiTrash size={20} />
-                    </button>
+                    <DeleteFood onDelete={onDelete} />
                 </div>
 
                 <div className="availability-container">
