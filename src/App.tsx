@@ -72,16 +72,10 @@ export default function App() {
     async function editFood(food: IFood): Promise<void> {
         try {
             setLoading(true)
-            const { id, name, description, price, image } = food;
-            const response = await api.put(`foods/${id}`, {
-                name,
-                description,
-                price,
-                image,
-            });
+            const response = await api.put(`foods/${food.id}`, food);
 
             setFoodList(state =>
-                state.map(old => old.id === id ? { ...response.data } : old)
+                state.map(old => old.id === food.id ? { ...response.data } : old)
             );
         } catch (error) {
             console.error(error)

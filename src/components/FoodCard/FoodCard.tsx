@@ -1,5 +1,5 @@
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import React, { useCallback, useContext, useState } from 'react';
+import React, { useCallback, useContext } from 'react';
 import { FoodContext } from '../../contexts/FoodContext';
 import IFood from '../../types/IFood';
 
@@ -19,14 +19,15 @@ interface IFoodCardProps {
 }
 
 export default function FoodCard({ food }: IFoodCardProps) {
-    const [isAvailable, setIsAvailable] = useState(food.available);
     const classes = useStyles();
-    const { deleteFood, onSelectFood } = useContext(FoodContext)
+    const { deleteFood, onSelectFood, editFood } = useContext(FoodContext)
     const { id, name, image, description, price, available } = food
 
-    async function toggleAvailable(): Promise<void> {
-        setIsAvailable(!isAvailable);
-    }
+    const toggleAvailable = useCallback((): void => {
+        editFood({ ...food, available: !food.available })
+    },
+        [food, editFood],
+    )
 
     const onEditFood = useCallback((): void => {
         onSelectFood(food)
@@ -79,13 +80,13 @@ export default function FoodCard({ food }: IFoodCardProps) {
                 </div>
 
                 <div className="">
-                    <p>{isAvailable ? 'Disponível' : 'Indisponível'}</p>
+                    <p>{available ? 'Disponível' : 'Indisponível'}</p>
 
                     <label htmlFor={`available-${id}`} className="">
                         <input
                             id={`available-${id}`}
                             type="checkbox"
-                            checked={isAvailable}
+                            checked={available}
                             onChange={toggleAvailable}
                         />
 
