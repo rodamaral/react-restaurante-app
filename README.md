@@ -1,25 +1,25 @@
 ## Funcionalidades:
 
-- [ ] **1. Adicionar novos pratos de comida:** ​Em sua página Dashboard você deve abrir um modal ao clicar no botão Novo Prato no Header. Esse modal deve ser responsável por cadastrar uma nova food passando os campos image, name, description, value.
-- [ ] **2. Remover pratos de comida:** Em sua página Dashboard você deve remover um prato de comida ao clicar no botão com ícone de lixeira no componente Food.
-- [ ] **3. Alterar disponibilidade dos pratos de comida:** ​Em sua página Dashboard você deve alterar a disponibilidade de um prato de comida ao clicar no switch que é controlado pelo valor de available.
-- [ ] **4. Listar os pratos de comida:** Sua página Dashboard deve ser capaz de exibir uma listagem, com o campo title, value, e description e available de todos os pratos de comida que estão cadastrados.
-- [ ] **5. Editar pratos de comida:** ​Em sua página Dashboard você deve abrir um modal ao clicar no botão Editar Prato. Esse modal deve ser responsável por editar uma food passando os campos image, name, description, value.
+-   [x] **1. Adicionar novos pratos de comida:** ​Em sua página Dashboard você deve abrir um modal ao clicar no botão Novo Prato no Header. Esse modal deve ser responsável por cadastrar uma nova food passando os campos image, name, description, value.
+-   [ ] **2. Remover pratos de comida:** Em sua página Dashboard você deve remover um prato de comida ao clicar no botão com ícone de lixeira no componente Food.
+-   [ ] **3. Alterar disponibilidade dos pratos de comida:** ​Em sua página Dashboard você deve alterar a disponibilidade de um prato de comida ao clicar no switch que é controlado pelo valor de available.
+-   [x] **4. Listar os pratos de comida:** Sua página Dashboard deve ser capaz de exibir uma listagem, com o campo title, value, e description e available de todos os pratos de comida que estão cadastrados.
+-   [ ] **5. Editar pratos de comida:** ​Em sua página Dashboard você deve abrir um modal ao clicar no botão Editar Prato. Esse modal deve ser responsável por editar uma food passando os campos image, name, description, value.
 
 ## Solução:
 
-- [x] Utilizar React, você pode iniciar utilizando Creat React App
-- [ ] Utilizar um gerenciador de estado como o Context API
-- [ ] Escrever testes de unidade e qualquer outro teste que você considere importante
-- [ ] Usar features ES6+
-- [ ] Utilizar HTML com boa semântica
-- [ ] Fazer uso de hooks
-- [ ] Utilizar Material-ui na construção do layout
+-   [x] Utilizar React, você pode iniciar utilizando Creat React App
+-   [ ] Utilizar um gerenciador de estado como o Context API
+-   [ ] Escrever testes de unidade e qualquer outro teste que você considere importante
+-   [x] Usar features ES6+
+-   [ ] Utilizar HTML com boa semântica
+-   [x] Fazer uso de hooks
+-   [x] Utilizar Material-ui na construção do layout
 
 ### Bônus:
 
-- [ ] Utilizar alguma solução CSS moderna, como Styled-components
-- [ ] Incluir a versão mobile do layout proposto
+-   [ ] Utilizar alguma solução CSS moderna, como Styled-components
+-   [ ] Incluir a versão mobile do layout proposto
 
 ## Available Scripts
 

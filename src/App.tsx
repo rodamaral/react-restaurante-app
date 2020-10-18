@@ -16,6 +16,8 @@ export default function App() {
     useFavicon(favicon)
     const { enqueueSnackbar } = useSnackbar()
 
+    const [id, setId] = useState<number | undefined>()
+    const [food, setFood] = useState<IFood | undefined>()
     const [pratoModal, setPratoModal] = useState(false)
     const [loading, setLoading] = useState(false)
     const [foodList, setFoodList] = useState<IFood[]>([])
@@ -40,6 +42,16 @@ export default function App() {
         [],
     )
 
+    const onSelectFood = useCallback(
+        (food: IFood) => {
+            setPratoModal(true)
+            // setId(food.id)
+            console.log('selected food', food)
+            setFood(food)
+        },
+        [],
+    )
+
     const onCloseModal = useCallback(
         () => {
             setPratoModal(false)
@@ -47,15 +59,50 @@ export default function App() {
         [],
     )
 
+    async function deleteFood(id: number): Promise<void> {
+        try {
+            setLoading(true)
+            await api.delete(`foods/${id}`);
+            setFoodList(old => old.filter(food => food.id !== id));
+        } catch (error) {
+            console.error(error)
+            enqueueSnackbar('Desculpe... Houve um erro de conexão', { variant: 'error' })
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    async function editFood(food: IFood): Promise<void> {
+        try {
+            setLoading(true)
+            const { id, name, description, price, image } = food;
+            const response = await api.put(`foods/${id}`, {
+                name,
+                description,
+                price,
+                image,
+            });
+
+            setFoodList(state =>
+                state.map(old => old.id === id ? { ...response.data } : old)
+            );
+        } catch (error) {
+            console.error(error)
+            enqueueSnackbar('Desculpe... Houve um erro de conexão', { variant: 'error' })
+        } finally {
+            setLoading(false)
+        }
+    }
+
     return (
-        <FoodContext.Provider value={{ foodList, setFoodList }}>
+        <FoodContext.Provider value={{ foodList, setFoodList, deleteFood, editFood, id, onSelectFood }}>
             <Header openModal={onOpenModal} />
 
             <FoodList foodList={foodList} />
 
             <LoadingBackdrop open={loading} />
 
-            <DialogAddFood open={pratoModal} onClose={onCloseModal} />
+            <DialogAddFood id={id} selectedFood={food} open={pratoModal} onClose={onCloseModal} />
         </FoodContext.Provider>
     )
 }

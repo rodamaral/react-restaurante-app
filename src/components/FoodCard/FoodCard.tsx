@@ -1,5 +1,6 @@
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import React, { useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
+import { FoodContext } from '../../contexts/FoodContext';
 import IFood from '../../types/IFood';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -20,16 +21,27 @@ interface IFoodCardProps {
 export default function FoodCard({ food }: IFoodCardProps) {
     const [isAvailable, setIsAvailable] = useState(food.available);
     const classes = useStyles();
+    const { deleteFood, onSelectFood } = useContext(FoodContext)
     const { id, name, image, description, price, available } = food
 
     async function toggleAvailable(): Promise<void> {
         setIsAvailable(!isAvailable);
     }
 
-    const onEditFood = (): void => {
-        console.log('onEditFood')
-        // handleEditFood(food);
-    }
+    const onEditFood = useCallback((): void => {
+        // onSelectFood(id)
+        onSelectFood(food)
+    },
+        // [id, onSelectFood],
+        [food, onSelectFood],
+    )
+
+    const onDelete = useCallback(
+        () => {
+            deleteFood(id)
+        },
+        [id, deleteFood],
+    )
 
     return (
         <div
@@ -62,6 +74,7 @@ export default function FoodCard({ food }: IFoodCardProps) {
                     <button
                         type="button"
                         className=""
+                        onClick={onDelete}
                     >
                         Lixeira
                     </button>

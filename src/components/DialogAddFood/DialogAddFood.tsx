@@ -1,5 +1,5 @@
 import { useSnackbar } from 'notistack';
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { useForm } from "react-hook-form";
 import styled from 'styled-components';
 import { FoodContext } from '../../contexts/FoodContext';
@@ -12,6 +12,8 @@ import FormInput from '../FormInput';
 
 interface IModalProps {
     open: boolean;
+    id?: number;
+    selectedFood: IFood | undefined;
     onClose: () => void;
 }
 
@@ -36,25 +38,29 @@ const Form = styled.form`
 
 const ModalAddFood: React.FC<IModalProps> = ({
     open,
+    selectedFood,
     onClose,
 }) => {
-    const { register, handleSubmit, errors } = useForm();
-    const { setFoodList } = useContext(FoodContext)
+    const id = selectedFood?.id
+    const { register, handleSubmit, errors } = useForm({
+        defaultValues: { ...selectedFood, description: 'ESSA MERDA FUNCIONA' + id }
+    });
+    const { setFoodList, editFood } = useContext(FoodContext)
     const { enqueueSnackbar } = useSnackbar()
+    const isEdit = useMemo(() => id !== undefined, [id])
 
     const onSubmit = async (data: any) => {
         try {
-            const { name, description, image, price } = data;
+            if (isEdit) {
+                await editFood({ ...data, id })
+            } else {
+                const response = await api.post('foods', {
+                    ...data,
+                    available: true,
+                });
+                setFoodList((old: IFood[]) => [...old, response.data as IFood])
+            }
 
-            const response = await api.post('foods', {
-                name,
-                description,
-                image,
-                price,
-                available: true,
-            });
-
-            setFoodList((old: IFood[]) => [...old, response.data as IFood])
             onClose()
         } catch (error) {
             console.error(error)
@@ -65,7 +71,7 @@ const ModalAddFood: React.FC<IModalProps> = ({
     return (
         <Dialog open={open} onClose={onClose}>
             <Form onSubmit={handleSubmit(onSubmit)}>
-                <h1>Novo Prato</h1>
+                <h1>{isEdit ? 'Editar' : 'Novo'} Prato {selectedFood?.id}</h1>
 
                 <FormInput name="image"
                     placeholder="Cole o link aqui"
@@ -92,7 +98,7 @@ const ModalAddFood: React.FC<IModalProps> = ({
                 />
 
                 <Button
-                    label="Adicionar Prato"
+                    label={isEdit ? 'Editar Prato' : 'Adicionar Prato'}
                     type="submit"
                     icon="+"
                 />
