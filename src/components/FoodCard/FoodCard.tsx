@@ -1,25 +1,14 @@
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import React, { useCallback, useContext } from 'react';
+import { FiEdit3, FiTrash } from 'react-icons/fi';
 import { FoodContext } from '../../contexts/FoodContext';
 import IFood from '../../types/IFood';
-
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            background: 'lightgray', // FIXME: remove
-        },
-        control: {
-            padding: theme.spacing(2),
-        },
-    }),
-);
+import Container from './styles';
 
 interface IFoodCardProps {
     food: IFood;
 }
 
 export default function FoodCard({ food }: IFoodCardProps) {
-    const classes = useStyles();
     const { deleteFood, onSelectFood, editFood } = useContext(FoodContext)
     const { id, name, image, description, price, available } = food
 
@@ -43,46 +32,47 @@ export default function FoodCard({ food }: IFoodCardProps) {
     )
 
     return (
-        <div
-            className={classes.root}
+        <Container
+            available={available}
         >
-            <header>
+            <section className="header">
                 <img src={image} alt={name} />
-            </header>
+            </section>
 
-            <section className="">
+            <section className="content">
                 <h2>{name}</h2>
 
                 <p>{description}</p>
 
-                <p className="">
+                <p className="price">
                     R$ <b>{price}</b>
                 </p>
             </section>
 
-            <section className="">
-                <div className="">
+            <section className="footer">
+                <div className="icon-container">
                     <button
                         type="button"
-                        className=""
+                        className="icon"
                         onClick={onEditFood}
                     >
-                        Editar
+                        <FiEdit3 size={20} />
                     </button>
 
                     <button
                         type="button"
-                        className=""
+                        className="icon"
+                        aria-label="delete"
                         onClick={onDelete}
                     >
-                        Lixeira
+                        <FiTrash size={20} />
                     </button>
                 </div>
 
-                <div className="">
+                <div className="availability-container">
                     <p>{available ? 'Disponível' : 'Indisponível'}</p>
 
-                    <label htmlFor={`available-${id}`} className="">
+                    <label htmlFor={`available-${id}`} className="switch">
                         <input
                             id={`available-${id}`}
                             type="checkbox"
@@ -90,10 +80,10 @@ export default function FoodCard({ food }: IFoodCardProps) {
                             onChange={toggleAvailable}
                         />
 
-                        <span className="" />
+                        <span className="slider" />
                     </label>
                 </div>
             </section>
-        </div>
+        </Container>
     );
 };
