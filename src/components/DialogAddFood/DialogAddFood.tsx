@@ -1,3 +1,4 @@
+import { useSnackbar } from 'notistack';
 import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 import styled from 'styled-components';
@@ -38,6 +39,7 @@ const ModalAddFood: React.FC<IModalProps> = ({
 }) => {
     const { register, handleSubmit, errors } = useForm();
     const { setFoodList } = useContext(FoodContext)
+    const { enqueueSnackbar } = useSnackbar()
 
     const onSubmit = async (data: any) => {
         try {
@@ -53,7 +55,8 @@ const ModalAddFood: React.FC<IModalProps> = ({
 
             setFoodList((old: IFood[]) => [...old, response.data as IFood])
         } catch (error) {
-            alert(error)
+            console.error(error)
+            enqueueSnackbar('Desculpe... Houve um erro de conexão', { variant: 'error' })
         }
     }
 
