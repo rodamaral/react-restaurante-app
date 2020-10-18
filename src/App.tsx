@@ -61,6 +61,7 @@ export default function App() {
             setLoading(true)
             await api.delete(`foods/${id}`);
             setFoodList(old => old.filter(food => food.id !== id));
+            enqueueSnackbar('Prato deletado com sucesso', { variant: 'success' })
         } catch (error) {
             console.error(error)
             enqueueSnackbar('Desculpe... Houve um erro de conexão', { variant: 'error' })
@@ -77,6 +78,7 @@ export default function App() {
             setFoodList(state =>
                 state.map(old => old.id === food.id ? { ...response.data } : old)
             );
+            enqueueSnackbar('Prato editado com sucesso', { variant: 'success' })
         } catch (error) {
             console.error(error)
             enqueueSnackbar('Desculpe... Houve um erro de conexão', { variant: 'error' })

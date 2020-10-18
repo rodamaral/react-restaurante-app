@@ -55,6 +55,7 @@ const UpsertFoodForm: React.FC<IProps> = ({
                     available: true,
                 });
                 setFoodList((old: IFood[]) => [...old, response.data as IFood])
+                enqueueSnackbar('Prato adicionado com sucesso', { variant: 'success' })
             }
 
             onClose()
