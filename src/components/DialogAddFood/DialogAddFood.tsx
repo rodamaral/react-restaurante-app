@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { FoodContext } from '../../contexts/FoodContext';
 import api from '../../services/api';
 import IFood from '../../types/IFood';
+import { validateImageURL, validatePrice } from '../../utils/validation';
 import Button from '../Button';
 import Dialog from '../Dialog';
 import FormInput from '../FormInput';
@@ -67,25 +68,25 @@ const ModalAddFood: React.FC<IModalProps> = ({
 
                 <FormInput name="image"
                     placeholder="Cole o link aqui"
-                    register={register}
+                    innnerRef={register({ validate: validateImageURL, required: true })}
                     errors={errors}
                 />
 
                 <FormInput name="name"
                     placeholder="Ex: Moda Italiana"
-                    register={register}
+                    innnerRef={register({ required: true })}
                     errors={errors}
                 />
 
                 <FormInput name="price"
                     placeholder="Ex: 19.90"
-                    register={register}
+                    innnerRef={register({ validate: validatePrice, required: true })}
                     errors={errors}
                 />
 
                 <FormInput name="description"
                     placeholder="Descrição"
-                    register={register}
+                    innnerRef={register({ required: true })}
                     errors={errors}
                 />
 

@@ -1,12 +1,13 @@
 import React from 'react';
+import { UseFormMethods } from 'react-hook-form';
 import styled from 'styled-components';
 
 interface IProps {
     name: string;
-    placeholder: string;
-    label?: string;
-    errors?: any;
-    register: any;
+    placeholder?: string;
+    // errors?: FieldErrors<TFieldValues>;
+    errors: UseFormMethods['errors'];
+    innnerRef: any; // FIXME
 }
 
 const StyledInputWrapper = styled.div`
@@ -46,20 +47,26 @@ export const StyledInputElement = styled.div`
     }
 `;
 
-const ErrorMessage = () => <span className="error">Campo obrigatório</span>
+const ErrorMessage = ({ error }: { error?: string }) => {
+    if (error === undefined) return null
 
-const FormInput = ({ name, placeholder, errors, register }: IProps) => {
+    return <span className="error">{error || 'Campo obrigatório'}</span>
+}
+
+const FormInput = ({ name, placeholder, errors, innnerRef }: IProps) => {
+    const error = errors[name]?.message
+
     return (
         <StyledInputElement>
             <StyledInputWrapper>
                 <input
                     name={name}
                     placeholder={placeholder}
-                    ref={register({ required: true })}
+                    ref={innnerRef}
                 />
             </StyledInputWrapper>
 
-            {errors[name] && <ErrorMessage />}
+            <ErrorMessage error={error} />
         </StyledInputElement>
     )
 }
